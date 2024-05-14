@@ -11,3 +11,6 @@
 #include <fstream>
 #include <locale>
 #include <codecvt>
+#include <memory>
+#include <vector>
+#include <unordered_map>
