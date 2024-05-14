@@ -96,14 +96,56 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\bolsa.cpp" />
+    <ClCompile Include="src\commands\Command.cpp" />
     <ClCompile Include="src\pch\so2pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\ServerData\App\App.cpp" />
+    <ClCompile Include="src\ServerData\App\fsm\AppContext.cpp" />
+    <ClCompile Include="src\ServerData\App\fsm\AppStateAdapter.cpp" />
+    <ClCompile Include="src\ServerData\App\fsm\states\AppLoadingState.cpp" />
+    <ClCompile Include="src\ServerData\App\fsm\states\AppPausedState.cpp" />
+    <ClCompile Include="src\ServerData\App\fsm\states\AppRunningState.cpp" />
+    <ClCompile Include="src\ServerData\Company\Company.cpp" />
+    <ClCompile Include="src\ServerData\Request\Request.cpp" />
+    <ClCompile Include="src\ServerData\User\User.cpp" />
+    <ClCompile Include="src\ServerData\Wallet\Wallet.cpp" />
+    <ClCompile Include="src\ui\AppUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dynamicLib\dynamicLib.vcxproj">
       <Project>{A16BA08D-8D23-E2DA-F62A-BB36E2017DCB}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\commands\bolsa\CmdBalance.h" />
+    <ClInclude Include="src\commands\bolsa\CmdBuy.h" />
+    <ClInclude Include="src\commands\bolsa\CmdExit.h" />
+    <ClInclude Include="src\commands\bolsa\CmdListC.h" />
+    <ClInclude Include="src\commands\bolsa\CmdLogin.h" />
+    <ClInclude Include="src\commands\bolsa\CmdSell.h" />
+    <ClInclude Include="src\commands\clientes\CmdAddC.h" />
+    <ClInclude Include="src\commands\clientes\CmdClose.h" />
+    <ClInclude Include="src\commands\clientes\CmdListC.h" />
+    <ClInclude Include="src\commands\clientes\CmdPause.h" />
+    <ClInclude Include="src\commands\clientes\CmdStock.h" />
+    <ClInclude Include="src\commands\clientes\CmdUsers.h" />
+    <ClInclude Include="src\commands\Command.h" />
+    <ClInclude Include="src\commands\Commands.h" />
+    <ClInclude Include="src\ServerData\App\App.h" />
+    <ClInclude Include="src\ServerData\App\fsm\AppContext.h" />
+    <ClInclude Include="src\ServerData\App\fsm\AppState.h" />
+    <ClInclude Include="src\ServerData\App\fsm\AppStateAdapter.h" />
+    <ClInclude Include="src\ServerData\App\fsm\states\AppLoadingState.h" />
+    <ClInclude Include="src\ServerData\App\fsm\states\AppPausedState.h" />
+    <ClInclude Include="src\ServerData\App\fsm\states\AppRunningState.h" />
+    <ClInclude Include="src\ServerData\App\fsm\states\IAppState.h" />
+    <ClInclude Include="src\ServerData\Company\Company.h" />
+    <ClInclude Include="src\ServerData\Request\Request.h" />
+    <ClInclude Include="src\ServerData\ServerData.h" />
+    <ClInclude Include="src\ServerData\User\User.h" />
+    <ClInclude Include="src\ServerData\Wallet\Wallet.h" />
+    <ClInclude Include="src\ui\AppUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

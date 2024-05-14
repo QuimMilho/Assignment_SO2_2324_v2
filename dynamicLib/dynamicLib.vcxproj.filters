@@ -12,6 +12,15 @@
     </ClInclude>
     <ClInclude Include="src\dynamicLib.h" />
     <ClInclude Include="src\temp\temp.h" />
+    <ClInclude Include="src\Data\Data.h" />
+    <ClInclude Include="src\exceptions\Exception.h" />
+    <ClInclude Include="src\exceptions\Exceptions.h" />
+    <ClInclude Include="src\exceptions\list\UserNotFound.h" />
+    <ClInclude Include="src\exceptions\list\CompanyNotFound.h" />
+    <ClInclude Include="src\Windows\WindowsHandle.h" />
+    <ClInclude Include="src\Windows\WindowsHandles.h" />
+    <ClInclude Include="src\Windows\handles\WindowsMutex.h" />
+    <ClInclude Include="src\Windows\WindowsRegistryKey.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch\so2pch.cpp">
@@ -19,5 +28,9 @@
     </ClCompile>
     <ClCompile Include="src\dynamicLib.cpp" />
     <ClCompile Include="src\temp\temp.cpp" />
+    <ClCompile Include="src\exceptions\list\Exceptions.cpp" />
+    <ClCompile Include="src\Windows\WindowsHandle.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsMutex.cpp" />
+    <ClCompile Include="src\Windows\WindowsRegistryKey.cpp" />
   </ItemGroup>
 </Project>
