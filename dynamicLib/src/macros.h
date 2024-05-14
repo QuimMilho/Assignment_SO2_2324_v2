@@ -23,18 +23,15 @@
 #define _TSTRINGSTREAM			std::wstringstream
 #define _TIFSTREAM				std::wifstream
 #define _TOFSTREAM				std::wofstream
+#define _TTOSTRING				std::to_wstring
 #define _TSTRCPY				wcscpy
 #define _TSTRCPY_S				wcscpy_s
 #define _TSTRCMP				wcscmp
-#define _TREGOPENKEYEX			RegOpenKeyExW
-#define _TREGCREATEKEYEX		RegCreateKeyExW
-#define _TREGGETVALUE			RegGetValueW
-#define _TREGSETVALUE			RegSetKeyValueW 
 #define _TSTRLEN				wcslen
 #define _TSTRCAT				wcscat
 #define _TSTRCAT_S				wcscat_s
 #define _TSPRINTF				wsprintf
-#define _TTOSTRING				std::to_wstring
+#define _TLPSTR					LPWSTR
 #else
 #define _TCOUT					std::cout
 #define _TCIN					std::cin
@@ -42,18 +39,15 @@
 #define _TSTRINGSTREAM			std::stringstream
 #define _TIFSTREAM				std::ifstream
 #define _TOFSTREAM				std::ofstream
+#define _TTOSTRING				std::to_string
 #define _TSTRCPY				lstrcpyA
 #define _TSTRCPY_S				lstrcpynA
 #define _TSTRCMP				strcmp
-#define _TREGOPENKEYEX			RegOpenKeyExA
-#define _TREGCREATEKEYEX		RegCreateKeyExA	
-#define _TREGGETVALUE			RegGetValueA
-#define _TREGSETVALUE			RegSetKeyValueA 
 #define _TSTRLEN				strlen
 #define _TSTRCAT				strcat
 #define _TSTRCAT_S				strcat_s
 #define _TSPRINTF				sprintf
-#define _TTOSTRING				std::to_string
+#define _TLPSTR					LPSTR
 #endif
 
 #ifdef SO2_DEBUG
