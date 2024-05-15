@@ -3,7 +3,7 @@
 #include "WindowsMutex.h"
 
 WindowsMutex::WindowsMutex(const _TSTRING& name) : 
-		WindowsHandle(CreateMutex(NULL, TRUE, name.c_str())), name(name) {
+		WindowsHandle(CreateMutex(NULL, FALSE, name.c_str())), name(name) {
 	error = getLastError();
 }
 
