@@ -19,3 +19,21 @@ bool AppStateAdapter::resume() {
 bool AppStateAdapter::pause(int n) {
 	return false;
 }
+
+bool AppStateAdapter::update() {
+	return false;
+}
+
+bool AppStateAdapter::updateBoard() {
+	return false;
+}
+
+bool AppStateAdapter::buy(const _TSTRING& username, const _TSTRING& companyName, const int nShares,
+		const double sharePrice) {
+	return false;
+}
+
+bool AppStateAdapter::sell(const _TSTRING& username, const _TSTRING& companyName, const int nShares,
+		const double sharePrice) {
+	return false;
+}

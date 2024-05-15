@@ -6,6 +6,8 @@
 #include "ServerData/Company/Company.h"
 #include "ServerData/User/User.h"
 
+#define APP_MUTEX _T("BolsaAppMutex")
+
 struct App {
 	App();
 
@@ -18,11 +20,18 @@ struct App {
 	[[nodiscard]] int nUsers() const;
 	[[nodiscard]] int nCompanies() const;
 
-	[[nodiscard]] bool pause(int n);
+	[[nodiscard]] bool pause(long n);
 	[[nodiscard]] bool resume();
 
 	[[nodiscard]] int checkStock();
 	[[nodiscard]] int checkStock(_TSTRING companyName);
+
+	bool update();
+	bool updateBoard();
+	int getBestCompanies(SharedCompany* comps);
+
+	void startThreads();
+	void stopThreads();
 
 	void readUsers(_TIFSTREAM& file);
 
@@ -30,5 +39,10 @@ private:
 	std::vector<std::unique_ptr<User>> users;
 	std::vector<std::unique_ptr<Company>> companies;
 
-	int timePaused, nClientes;
+	std::unique_ptr<WindowsThread> pipeThread;
+	std::unique_ptr<WindowsThread> timerThread;
+
+	bool updated;
+	int nClientes;
+	long timePaused;
 };

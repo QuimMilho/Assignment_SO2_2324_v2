@@ -2,12 +2,13 @@
 
 #include "App.h"
 #include "commands/Command.h"
+#include "threads/Threads.h"
 
 #define KEY_PATH _T("Software\\BolsaApp")
 #define KEY_NAME _T("BolsaValoresSettings")
 #define KEY_VALUE _T("NCLIENTES")
 
-App::App() : timePaused(0), nClientes(0) {
+App::App() : timePaused(0), nClientes(0), updated(false) {
 	Command::registerCommands();
 	std::unique_ptr<WindowsRegistryKey> key = std::unique_ptr<WindowsRegistryKey>(
 			WindowsRegistryKey::openKey(KEY_PATH, KEY_NAME, KEY_VALUE, 5, KEY_READ));
@@ -86,7 +87,7 @@ void App::readUsers(_TIFSTREAM& file) {
 	LOG_DEBUG("Lidos %d utilizadores em %d linhas.", users.size(), i);
 }
 
-bool App::pause(int n) {
+bool App::pause(long n) {
 	if (n <= 0)
 		return false;
 	timePaused = n;
@@ -109,5 +110,30 @@ int App::checkStock() {
 int App::checkStock(_TSTRING companyName) {
 	int n = 0;
 
+	return 0;
+}
+
+void App::startThreads() {
+	pipeThread = std::unique_ptr<WindowsThread>(PipeThread::createThread(*this));
+	timerThread = std::unique_ptr<WindowsThread>(TimerThread::createThread(*this));
+}
+
+void App::stopThreads() {
+	pipeThread->stop();
+	timerThread->stop();
+}
+
+bool App::update() {
+
+}
+
+bool App::updateBoard() {
+	SharedCompany comps[10];
+	getBestCompanies(comps);
+
+}
+
+int App::getBestCompanies(SharedCompany * comps) {
+	
 	return 0;
 }

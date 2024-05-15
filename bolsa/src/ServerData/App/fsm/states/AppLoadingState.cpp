@@ -26,6 +26,8 @@ int AppLoadingState::addUsers(const _TSTRING& fileName) {
 
 	LOG_DEBUG("Foram lidos %d utilizadores!", n)
 
+	data->startThreads();
+
 	if (n)
 		context->changeState(AppState::RUNNING);
 
