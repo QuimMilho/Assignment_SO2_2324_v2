@@ -107,6 +107,7 @@
     <ClInclude Include="src\pch\so2pch.h" />
     <ClInclude Include="src\temp\temp.h" />
     <ClInclude Include="src\Windows\handles\WindowsMutex.h" />
+    <ClInclude Include="src\Windows\handles\WindowsThread.h" />
     <ClInclude Include="src\Windows\WindowsRegistryKey.h" />
     <ClInclude Include="src\Windows\WindowsHandle.h" />
     <ClInclude Include="src\Windows\WindowsHandles.h" />
@@ -119,6 +120,7 @@
     </ClCompile>
     <ClCompile Include="src\temp\temp.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsMutex.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsThread.cpp" />
     <ClCompile Include="src\Windows\WindowsRegistryKey.cpp" />
     <ClCompile Include="src\Windows\WindowsHandle.cpp" />
   </ItemGroup>

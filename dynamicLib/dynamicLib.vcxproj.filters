@@ -21,6 +21,7 @@
     <ClInclude Include="src\Windows\WindowsHandles.h" />
     <ClInclude Include="src\Windows\handles\WindowsMutex.h" />
     <ClInclude Include="src\Windows\WindowsRegistryKey.h" />
+    <ClInclude Include="src\Windows\handles\WindowsThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch\so2pch.cpp">
@@ -32,5 +33,6 @@
     <ClCompile Include="src\Windows\WindowsHandle.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsMutex.cpp" />
     <ClCompile Include="src\Windows\WindowsRegistryKey.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsThread.cpp" />
   </ItemGroup>
 </Project>
