@@ -51,6 +51,12 @@ int _tmain(int argc, TCHAR** argv) {
 			break;
 		}
 
+		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+			LOG_INFO("Esc pressionado!");
+			_TCOUT << _T("O programa board foi encerrado manualmente pelo utilizador!") << _TENDL;
+			break;
+		}
+
 		Sleep(10);
 	}
 
