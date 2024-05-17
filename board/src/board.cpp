@@ -47,6 +47,7 @@ int _tmain(int argc, TCHAR** argv) {
 		}
 
 		if (appExitEvent.wait(0) == WAIT_OBJECT_0) {
+			_TCOUT << _T("A aplicação bolsa parou de estar em execução!") << _TENDL;
 			break;
 		}
 
