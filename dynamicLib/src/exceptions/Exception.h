@@ -6,5 +6,5 @@ struct SO2_API Exception : public std::exception {
 
 	Exception() = default;
 
-	virtual _TSTRING what();
+	[[nodiscard]] virtual _TSTRING what() = 0;
 };

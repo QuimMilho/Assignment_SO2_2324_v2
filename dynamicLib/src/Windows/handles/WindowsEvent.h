@@ -6,15 +6,15 @@ struct SO2_API WindowsEvent : public WindowsHandle {
 	WindowsEvent(const _TSTRING& name, const bool manualReset = false);
 	virtual ~WindowsEvent();
 
-	bool create();
-	bool open();
+	[[nodiscard]] bool create();
+	[[nodiscard]] bool open();
 
-	bool set();
-	bool reset();
+	[[nodiscard]] bool set();
+	[[nodiscard]] bool reset();
 
-	int wait(const int ms = 100);
+	[[nodiscard]] int wait(const int ms = 100);
 
-	bool triggered() const;
+	[[nodiscard]] bool triggered() const;
 
 private:
 	_TSTRING name;

@@ -9,7 +9,7 @@
 struct SO2_API WindowsTimer {
 	WindowsTimer(const double tps, const long precision = PRECISION_MICRO);
 
-	bool check();
+	[[nodiscard]] bool check();
 	void reset();
 
 private:

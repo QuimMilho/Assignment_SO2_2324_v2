@@ -7,11 +7,11 @@ struct AppPausedState : public AppStateAdapter {
 
 	AppPausedState(App* app, AppContext* context);
 
-	int addCompany(const _TSTRING& fileName) override;
-	int addCompany(const _TSTRING& companyName, const int total_shares, const double share_price) override;
+	[[nodiscard]] int addCompany(const _TSTRING& fileName) override;
+	[[nodiscard]] int addCompany(const _TSTRING& companyName, const int total_shares, const double share_price) override;
 
-	bool resume() override;
-	bool close() override;
+	[[nodiscard]] bool resume() override;
+	[[nodiscard]] bool close() override;
 
 private:
 

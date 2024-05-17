@@ -7,8 +7,8 @@ struct SO2_API WindowsHandle {
 	WindowsHandle(HANDLE handle);
 	virtual ~WindowsHandle();
 
-	HANDLE getHandle() const;
-	int GetLastError() const;
+	[[nodiscard]] HANDLE getHandle() const;
+	[[nodiscard]] int GetLastError() const;
 
 protected:
 	HANDLE handle;

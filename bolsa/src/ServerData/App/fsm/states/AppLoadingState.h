@@ -7,7 +7,7 @@ struct AppLoadingState : public AppStateAdapter {
 	
 	AppLoadingState(App* app, AppContext* context);
 
-	int addUsers(const _TSTRING& fileName) override;
+	[[nodiscard]] int addUsers(const _TSTRING& fileName) override;
 
 private:
 

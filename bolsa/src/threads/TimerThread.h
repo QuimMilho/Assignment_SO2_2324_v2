@@ -4,7 +4,7 @@
 #include "ServerData/ServerData.h"
 
 struct TimerThread : public WindowsThread {
-	static TimerThread* createThread(AppContext& app);
+	[[nodiscard]] static TimerThread* createThread(AppContext& app);
 	virtual ~TimerThread();
 
 	DWORD WINAPI function(LPVOID lpParam) override;

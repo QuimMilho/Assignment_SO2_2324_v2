@@ -4,7 +4,7 @@
 #include "ServerData/ServerData.h"
 
 struct PipeThread : public WindowsThread {
-	static PipeThread* createThread(App& app);
+	[[nodiscard]] static PipeThread* createThread(App& app);
 	virtual ~PipeThread();
 
 	DWORD WINAPI function(LPVOID lpParam) override;

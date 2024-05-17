@@ -13,14 +13,14 @@ struct SO2_API WindowsNamedPipe : public WindowsHandle {
 	WindowsNamedPipe(const _TSTRING& name);
 	virtual ~WindowsNamedPipe();
 
-	int createFile();
-	int openFile();
-	int unmap();
+	[[nodiscard]] int createFile();
+	[[nodiscard]] int openFile();
+	[[nodiscard]] int unmap();
 
 	template<typename T>
-	int write(Envelope<T>* e);
+	[[nodiscard]] int write(Envelope<T>* e);
 	template<typename T>
-	int read(Envelope<T>* e);
+	[[nodiscard]] int read(Envelope<T>* e);
 
 private:
 	_TSTRING name;

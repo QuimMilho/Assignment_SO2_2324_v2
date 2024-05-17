@@ -11,22 +11,22 @@ struct AppContext {
 	void changeState(AppState newState);
 
 	void addUsers(const _TSTRING& fileName);
-	int addCompanies(const _TSTRING& fileName);
-	int addCompanies(const _TSTRING& companyName, const int total_shares, const double share_price);
+	[[nodiscard]] int addCompanies(const _TSTRING& fileName);
+	[[nodiscard]] int addCompanies(const _TSTRING& companyName, const int total_shares, const double share_price);
 
 	[[nodiscard]] AppState getState() const;
 
 	[[nodiscard]] bool pause(int n);
 	[[nodiscard]] bool resume();
 
-	bool update();
-	bool updateBoard(WindowsSharedMemory& memory);
+	[[nodiscard]] bool update();
+	[[nodiscard]] bool updateBoard(WindowsSharedMemory& memory);
 
-	static AppContext* getInstance();
-	bool close();
+	[[nodiscard]] static AppContext* getInstance();
+	[[nodiscard]] bool close();
 
-	App& getApp();
-	bool isRunning() const;
+	[[nodiscard]] App& getApp();
+	[[nodiscard]] bool isRunning() const;
 
 private:
 	static AppContext* instance;
@@ -36,5 +36,5 @@ private:
 
 	bool running;
 
-	IAppState* getInstance(AppState newState);
+	[[nodiscard]] IAppState* getInstance(AppState newState);
 };
