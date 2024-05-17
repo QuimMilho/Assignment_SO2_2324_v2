@@ -8,3 +8,7 @@ User::User(const _TSTRING& name, const _TSTRING& password, const double balance)
 _TSTRING User::getName() const {
 	return username;
 }
+
+_TOSTREAM& operator<<(_TOSTREAM& o, User& c) {
+	return o << _T("Username: ") << c.username << _T(" - Saldo: ") << c.balance;
+}

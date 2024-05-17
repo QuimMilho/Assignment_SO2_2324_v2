@@ -9,6 +9,8 @@ struct User {
 
 	[[nodiscard]] _TSTRING getName() const;
 
+	friend _TOSTREAM& operator << (_TOSTREAM& o, User& c);
+
 private:
 	_TSTRING username, password;
 	double balance;
