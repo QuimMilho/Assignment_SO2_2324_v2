@@ -99,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="src\Data\Data.h" />
     <ClInclude Include="src\Data\NumberFormatter.h" />
+    <ClInclude Include="src\Data\Random.h" />
     <ClInclude Include="src\dynamicLib.h" />
     <ClInclude Include="src\exceptions\Exception.h" />
     <ClInclude Include="src\exceptions\Exceptions.h" />
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\NumberFormatter.cpp" />
+    <ClCompile Include="src\Data\Random.cpp" />
     <ClCompile Include="src\dynamicLib.cpp" />
     <ClCompile Include="src\exceptions\list\Exceptions.cpp" />
     <ClCompile Include="src\pch\so2pch.cpp">
