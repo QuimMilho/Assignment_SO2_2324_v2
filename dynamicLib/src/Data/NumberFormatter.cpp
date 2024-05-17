@@ -51,7 +51,6 @@ TCHAR* NumberFormatter::format(TCHAR* str, const int max_size, const double d, c
 	}
 
 	for (int i = p + 1; i < p + casasDecimais; i++) {
-		LOG_INFO(_T("%d %d %d"), p, p + casasDecimais, i);
 		if (buf[i] != _T(' '))
 			break;
 		buf[i] = _T('0');
