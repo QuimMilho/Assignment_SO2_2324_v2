@@ -113,40 +113,40 @@
     <ClInclude Include="src\commands\Commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdAddC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdListC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdStock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdUsers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdPause.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\clientes\CmdClose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\commands\bolsa\CmdLogin.h">
+    <ClInclude Include="src\commands\bolsa\CmdAddC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\commands\bolsa\CmdListC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands\bolsa\CmdBuy.h">
+    <ClInclude Include="src\commands\bolsa\CmdStock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands\bolsa\CmdSell.h">
+    <ClInclude Include="src\commands\bolsa\CmdUsers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands\bolsa\CmdBalance.h">
+    <ClInclude Include="src\commands\bolsa\CmdPause.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\commands\bolsa\CmdExit.h">
+    <ClInclude Include="src\commands\bolsa\CmdClose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdLogin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdListC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdBuy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdSell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdBalance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\commands\clientes\CmdExit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\threads\PipeThread.h">

@@ -120,18 +120,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\commands\bolsa\CmdBalance.h" />
-    <ClInclude Include="src\commands\bolsa\CmdBuy.h" />
-    <ClInclude Include="src\commands\bolsa\CmdExit.h" />
-    <ClInclude Include="src\commands\bolsa\CmdListC.h" />
-    <ClInclude Include="src\commands\bolsa\CmdLogin.h" />
-    <ClInclude Include="src\commands\bolsa\CmdSell.h" />
-    <ClInclude Include="src\commands\clientes\CmdAddC.h" />
-    <ClInclude Include="src\commands\clientes\CmdClose.h" />
+    <ClInclude Include="src\commands\clientes\CmdBalance.h" />
+    <ClInclude Include="src\commands\clientes\CmdBuy.h" />
+    <ClInclude Include="src\commands\clientes\CmdExit.h" />
     <ClInclude Include="src\commands\clientes\CmdListC.h" />
-    <ClInclude Include="src\commands\clientes\CmdPause.h" />
-    <ClInclude Include="src\commands\clientes\CmdStock.h" />
-    <ClInclude Include="src\commands\clientes\CmdUsers.h" />
+    <ClInclude Include="src\commands\clientes\CmdLogin.h" />
+    <ClInclude Include="src\commands\clientes\CmdSell.h" />
+    <ClInclude Include="src\commands\bolsa\CmdAddC.h" />
+    <ClInclude Include="src\commands\bolsa\CmdClose.h" />
+    <ClInclude Include="src\commands\bolsa\CmdListC.h" />
+    <ClInclude Include="src\commands\bolsa\CmdPause.h" />
+    <ClInclude Include="src\commands\bolsa\CmdStock.h" />
+    <ClInclude Include="src\commands\bolsa\CmdUsers.h" />
     <ClInclude Include="src\commands\Command.h" />
     <ClInclude Include="src\commands\Commands.h" />
     <ClInclude Include="src\ServerData\App\App.h" />
