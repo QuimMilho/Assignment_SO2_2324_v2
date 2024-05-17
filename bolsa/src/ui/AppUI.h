@@ -14,4 +14,5 @@ private:
 	[[nodiscard]] int loadingUI();
 	[[nodiscard]] int commandUI();
 	void printError(const int err);
+	WindowsMutex appMutex;
 };

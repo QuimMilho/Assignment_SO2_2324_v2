@@ -3,7 +3,7 @@
 #include "AppUI.h"
 #include "commands/Command.h"
 
-AppUI::AppUI(AppContext& app) : app(app) {}
+AppUI::AppUI(AppContext& app) : app(app), appMutex(WindowsMutex(APP_ACCESS_MUTEX)) {}
 
 void AppUI::start() {
 	int exit = 0;
@@ -76,7 +76,16 @@ int AppUI::commandUI() {
 
 	SetConsoleMode(stdinHandle, fdwOldMode);
 
-	int err = Command::executeCommand(app, cmd);
+	int err;
+
+	if ((err = appMutex.wait(1000)) != WAIT_OBJECT_0) {
+		LOG_ERRO(_T("Não foi possível desbloquear a aplicação! Erro: %d"), err);
+		return 1;
+	}
+
+	err = Command::executeCommand(app, cmd);
+
+	appMutex.release();
 
 	if (err) {
 		if (err == CMD_EXIT)

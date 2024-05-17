@@ -7,7 +7,7 @@ DWORD WINAPI PipeThread::function(LPVOID lpParam) {
 	PipeThread& data = *(PipeThread*) lpParam;
 	App& context = *(App*)data.getData();
 
-	WindowsMutex mutex(APP_MUTEX);
+	WindowsMutex mutex(APP_ACCESS_MUTEX);
 
 	while (data.running()) {
 	}

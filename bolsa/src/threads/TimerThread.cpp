@@ -7,7 +7,7 @@ DWORD WINAPI TimerThread::function(LPVOID lpParam) {
 	TimerThread& data = *(TimerThread*)lpParam;
 	AppContext& context = *(AppContext*) data.getData();
 
-	WindowsMutex mutex(APP_MUTEX);
+	WindowsMutex appMutex(APP_ACCESS_MUTEX);
 
 	WindowsSharedMemory sharedMemory(BOARD_SHARED_MEMORY, sizeof(BoardData));
 	if (!sharedMemory.create(PAGE_READWRITE)) {
@@ -36,19 +36,29 @@ DWORD WINAPI TimerThread::function(LPVOID lpParam) {
 			}
 
 			if (context.getState() == AppState::PAUSED) {
+				if (appMutex.wait(100) != WAIT_OBJECT_0) {
+					LOG_ERRO(_T("Não foi possível desbloquear a aplicação para colocar em pausa!"));
+					continue;
+				}
 				if (context.resume()) {
 					_TCOUT << _T("A aplicação já não está em pausa!") << _TENDL;
 				}
+				appMutex.release();
 			} else if (context.getState() == AppState::RUNNING) {
+				if (appMutex.wait(100) != WAIT_OBJECT_0) {
+					LOG_ERRO(_T("Não foi possível desbloquear a aplicação para dar update ao board!"));
+					continue;
+				}
 				if (context.updateBoard(sharedMemory)) {
 					boardUpdate.set();
 				}
+				appMutex.release();
 			}
 		}
 		// Every 10.0 seconds
 		if (updateValuesTimer.check()) {
 			updateValuesTimer.reset();
-			// update companies shares
+			context.update();
 		}
 		Sleep(10);
 	}
