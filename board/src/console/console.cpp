@@ -21,11 +21,8 @@ void Console::clear() {
 }
 
 void Console::print(const BoardData& data) {
-	CHAR_INFO info[1496];
-	COORD pos = {0, 0}, size = {68, 22};
-	SMALL_RECT rect = {0, 0, 68, 22};
-	processBoardData(info, data);
-	WriteConsoleOutput(handle, info, size, pos, &rect);
+	printTable(data);
+	printLast(data);
 }
 
 void Console::setCursor(const int x, const int y) {
@@ -71,4 +68,32 @@ void Console::printString(CHAR_INFO* info, const TCHAR* str, const int size, con
 	for (int i = 0; i < size; i++) {
 		_TCHAR_INFO_CHAR(index + i) = str[i];
 	}
+}
+
+void Console::printTable(const BoardData& data) {
+	CHAR_INFO info[1496];
+	COORD pos = { 0, 0 }, size = { 68, 22 };
+	SMALL_RECT rect = { 0, 0, 68, 22 };
+	processBoardData(info, data);
+	WriteConsoleOutput(handle, info, size, pos, &rect);
+}
+
+void Console::printLast(const BoardData& data) {
+	CHAR_INFO info[136];
+	for (int i = 0; i < 68; i++) {
+		_TCHAR_INFO_CHAR(i) = _T(' ');
+		info[i].Attributes = (BACKGROUND_GREEN | (BACKGROUND_BLUE & BACKGROUND_RED)) |
+			(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+	}
+	for (int i = 0; i < 68; i++) {
+		_TCHAR_INFO_CHAR(i + 68) = _T(' ');
+		info[i + 68].Attributes = (BACKGROUND_RED | (BACKGROUND_BLUE & BACKGROUND_GREEN)) |
+			(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+	}
+	printString(info, _T("Ultima Empresa transacionada:"), 29, 1);
+	printString(info, data.ultimaEmpresa, _TSTRLEN(data.ultimaEmpresa), 31);
+	printString(info, _T("Pressione Esc para sair!"), 24, 1, 1);
+	COORD pos = { 0, 0 }, size = { 68, 2 };
+	SMALL_RECT rect = { 0, 22, 68, 24 };
+	WriteConsoleOutput(handle, info, size, pos, &rect);
 }
