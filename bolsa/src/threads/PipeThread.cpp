@@ -2,7 +2,7 @@
 
 #include "PipeThread.h"
 
-DWORD WINAPI threadFunction(LPVOID lpParam) {
+DWORD WINAPI PipeThread::function(LPVOID lpParam) {
 	LOG_DEBUG("PipeThread criada!");
 	PipeThread& data = *(PipeThread*) lpParam;
 	App& context = *(App*)data.getData();
@@ -19,6 +19,6 @@ PipeThread* PipeThread::createThread(App& app) {
 	return new PipeThread(app);
 }
 
-PipeThread::PipeThread(App& app) : WindowsThread(&app, threadFunction) {}
+PipeThread::PipeThread(App& app) : WindowsThread(&app) {}
 
 PipeThread::~PipeThread() {}
