@@ -27,22 +27,25 @@ struct App {
 	[[nodiscard]] int checkStock(_TSTRING companyName);
 
 	bool update();
-	bool updateBoard();
+	bool updateBoard(WindowsSharedMemory& memory);
 	int getBestCompanies(SharedCompany* comps);
 
 	void startThreads();
 	void stopThreads();
 
 	void readUsers(_TIFSTREAM& file);
+	Company* getCompanies();
 
 private:
-	std::vector<std::unique_ptr<User>> users;
-	std::vector<std::unique_ptr<Company>> companies;
+	int findCompanySpot(Company& c, SharedCompany* comps);
+
+	std::vector<User> users;
+	std::vector<Company> companies;
 
 	std::unique_ptr<WindowsThread> pipeThread;
 	std::unique_ptr<WindowsThread> timerThread;
 
-	bool updated;
+	bool updatedCompanies;
 	int nClientes;
 	long timePaused;
 };
