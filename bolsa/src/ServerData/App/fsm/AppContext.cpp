@@ -5,8 +5,14 @@
 #include "ServerData/App/fsm/states/AppRunningState.h"
 #include "ServerData/App/fsm/states/AppPausedState.h"
 
-AppContext::AppContext() {
-	this->app = std::unique_ptr<App>(new App());
+AppContext * AppContext::instance = nullptr;
+
+AppContext* AppContext::getInstance() {
+	return instance;
+}
+
+AppContext::AppContext() : app(App()), running(true) {
+	instance = this;
 	changeState(AppState::LOADING);
 }
 
@@ -23,11 +29,11 @@ void AppContext::changeState(AppState newState) {
 IAppState* AppContext::getInstance(AppState newState) {
 	switch (newState) {
 	case AppState::LOADING:
-		return new AppLoadingState(app.get(), this);
-	case AppState::PAUSED:
-		return new AppRunningState(app.get(), this);
+		return new AppLoadingState(&app, this);
 	case AppState::RUNNING:
-		return new AppPausedState(app.get(), this);
+		return new AppRunningState(&app, this);
+	case AppState::PAUSED:
+		return new AppPausedState(&app, this);
 	default:
 		return nullptr;
 	}
@@ -35,6 +41,14 @@ IAppState* AppContext::getInstance(AppState newState) {
 
 void AppContext::addUsers(const _TSTRING& fileName) {
 	atual->addUsers(fileName);
+}
+
+int AppContext::addCompanies(const _TSTRING& fileName) {
+	return atual->addCompany(fileName);
+}
+
+int AppContext::addCompanies(const _TSTRING& companyName, const int total_shares, const double share_price) {
+	return atual->addCompany(companyName, total_shares, share_price);
 }
 
 AppState AppContext::getState() const {
@@ -47,4 +61,25 @@ bool AppContext::pause(int n) {
 
 bool AppContext::resume() {
 	return atual->resume();
+}
+
+bool AppContext::close() {
+	running = false;
+	return atual->close();
+}
+
+bool AppContext::update() {
+	return atual->update();
+}
+
+bool AppContext::updateBoard(WindowsSharedMemory& memory) {
+	return atual->updateBoard(memory);
+}
+
+App& AppContext::getApp() {
+	return app;
+}
+
+bool AppContext::isRunning() const {
+	return running;
 }
