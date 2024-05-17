@@ -6,6 +6,11 @@ Company::Company(const _TSTRING& name, const int n_shares, const double share_pr
 		total_shares(n_shares), available_shares(n_shares), share_price(share_price), 
 		total_value(n_shares * share_price), requests() {}
 
+void Company::setPrice(const double p) {
+	share_price = p;
+	total_value = p * total_shares;
+}
+
 _TSTRING Company::getName() const {
 	return name;
 }
@@ -27,3 +32,4 @@ _TOSTREAM& operator<<(_TOSTREAM& o, Company& c) {
 			c.name.c_str(), c.total_shares, c.share_price, c.total_value);
 	return o << str;
 }
+

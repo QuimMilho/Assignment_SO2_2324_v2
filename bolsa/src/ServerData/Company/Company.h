@@ -10,6 +10,8 @@ struct Company {
 	[[nodiscard]] _TSTRING getName() const;
 	[[nodiscard]] double getSharedPrice() const;
 
+	void setPrice(const double p);
+
 	friend Company& operator >> (Company& c, SharedCompany& sc);
 	friend _TOSTREAM& operator << (_TOSTREAM& o, Company& c);
 
