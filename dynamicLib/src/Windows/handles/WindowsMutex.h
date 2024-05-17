@@ -12,5 +12,4 @@ struct SO2_API WindowsMutex : public WindowsHandle {
 
 private:
 	_TSTRING name;
-	int error;
 };
