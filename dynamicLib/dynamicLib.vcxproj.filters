@@ -11,7 +11,6 @@
       <Filter>pch</Filter>
     </ClInclude>
     <ClInclude Include="src\dynamicLib.h" />
-    <ClInclude Include="src\temp\temp.h" />
     <ClInclude Include="src\Data\Data.h" />
     <ClInclude Include="src\exceptions\Exception.h" />
     <ClInclude Include="src\exceptions\Exceptions.h" />
@@ -22,17 +21,26 @@
     <ClInclude Include="src\Windows\handles\WindowsMutex.h" />
     <ClInclude Include="src\Windows\WindowsRegistryKey.h" />
     <ClInclude Include="src\Windows\handles\WindowsThread.h" />
+    <ClInclude Include="src\Windows\handles\WindowsSharedMemory.h" />
+    <ClInclude Include="src\Windows\handles\WindowsNamedPipe.h" />
+    <ClInclude Include="src\Windows\handles\WindowsEvent.h" />
+    <ClInclude Include="src\Windows\WindowsTimer.h" />
+    <ClInclude Include="src\Data\NumberFormatter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\pch\so2pch.cpp">
       <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="src\dynamicLib.cpp" />
-    <ClCompile Include="src\temp\temp.cpp" />
     <ClCompile Include="src\exceptions\list\Exceptions.cpp" />
     <ClCompile Include="src\Windows\WindowsHandle.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsMutex.cpp" />
     <ClCompile Include="src\Windows\WindowsRegistryKey.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsThread.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsSharedMemory.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsNamedPipe.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsEvent.cpp" />
+    <ClCompile Include="src\Windows\WindowsTimer.cpp" />
+    <ClCompile Include="src\Data\NumberFormatter.cpp" />
   </ItemGroup>
 </Project>

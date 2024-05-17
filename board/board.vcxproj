@@ -96,6 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\board.cpp" />
+    <ClCompile Include="src\console\console.cpp" />
     <ClCompile Include="src\pch\so2pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -104,6 +105,9 @@
     <ProjectReference Include="..\dynamicLib\dynamicLib.vcxproj">
       <Project>{A16BA08D-8D23-E2DA-F62A-BB36E2017DCB}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\console\console.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

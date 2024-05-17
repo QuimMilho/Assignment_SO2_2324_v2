@@ -98,6 +98,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Data\Data.h" />
+    <ClInclude Include="src\Data\NumberFormatter.h" />
     <ClInclude Include="src\dynamicLib.h" />
     <ClInclude Include="src\exceptions\Exception.h" />
     <ClInclude Include="src\exceptions\Exceptions.h" />
@@ -105,24 +106,31 @@
     <ClInclude Include="src\exceptions\list\UserNotFound.h" />
     <ClInclude Include="src\macros.h" />
     <ClInclude Include="src\pch\so2pch.h" />
-    <ClInclude Include="src\temp\temp.h" />
+    <ClInclude Include="src\Windows\handles\WindowsEvent.h" />
     <ClInclude Include="src\Windows\handles\WindowsMutex.h" />
+    <ClInclude Include="src\Windows\handles\WindowsNamedPipe.h" />
+    <ClInclude Include="src\Windows\handles\WindowsSharedMemory.h" />
     <ClInclude Include="src\Windows\handles\WindowsThread.h" />
     <ClInclude Include="src\Windows\WindowsRegistryKey.h" />
     <ClInclude Include="src\Windows\WindowsHandle.h" />
     <ClInclude Include="src\Windows\WindowsHandles.h" />
+    <ClInclude Include="src\Windows\WindowsTimer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Data\NumberFormatter.cpp" />
     <ClCompile Include="src\dynamicLib.cpp" />
     <ClCompile Include="src\exceptions\list\Exceptions.cpp" />
     <ClCompile Include="src\pch\so2pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\temp\temp.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsEvent.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsMutex.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsNamedPipe.cpp" />
+    <ClCompile Include="src\Windows\handles\WindowsSharedMemory.cpp" />
     <ClCompile Include="src\Windows\handles\WindowsThread.cpp" />
     <ClCompile Include="src\Windows\WindowsRegistryKey.cpp" />
     <ClCompile Include="src\Windows\WindowsHandle.cpp" />
+    <ClCompile Include="src\Windows\WindowsTimer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
