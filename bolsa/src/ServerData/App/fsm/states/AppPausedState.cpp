@@ -17,3 +17,16 @@ bool AppPausedState::resume() {
 	}
 	return false;
 }
+
+bool AppPausedState::close() {
+	data->stopThreads();
+	return true;
+}
+
+int AppPausedState::addCompany(const _TSTRING& fileName) {
+	return -1;
+}
+
+int AppPausedState::addCompany(const _TSTRING& companyName, const int total_shares, const double share_price) {
+	return -1;
+}
