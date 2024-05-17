@@ -2,6 +2,8 @@
 
 #include "pch/so2pch.h"
 
+#define MAX_STRING 32
+
 #ifdef SO2_PLATFORM_WINDOWS
 #ifdef SO2_BUILD_DLL
 #define SO2_API __declspec(dllexport)
@@ -32,6 +34,8 @@
 #define _TSTRCAT_S				wcscat_s
 #define _TSPRINTF				wsprintf
 #define _TLPSTR					LPWSTR
+#define _TOSTREAM				std::wostream
+#define _TCHAR_INFO_CHAR(i)		info[i].Char.UnicodeChar
 #else
 #define _TCOUT					std::cout
 #define _TCIN					std::cin
@@ -48,6 +52,8 @@
 #define _TSTRCAT_S				strcat_s
 #define _TSPRINTF				sprintf
 #define _TLPSTR					LPSTR
+#define _TOSTREAM				std::ostream
+#define _TCHAR_INFO_CHAR(i)		info[i].Char.AsciiChar
 #endif
 
 #ifdef SO2_DEBUG
