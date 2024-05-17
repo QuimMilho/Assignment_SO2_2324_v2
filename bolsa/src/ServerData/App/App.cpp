@@ -21,6 +21,15 @@ App::App() : timePaused(0), nClientes(0), updatedCompanies(false) {
 	nClientes = n;
 }
 
+bool App::setCompanyPrice(const _TSTRING& cName, double new_price) {
+	if (new_price < 0.001)
+		return false;
+	Company& c = findCompany(cName);
+	c.setPrice(new_price);
+	updatedCompanies = true;
+	return true;
+}
+
 bool App::addUser(const _TSTRING& name, const _TSTRING& password, const double balance) {
 	try {
 		User& u = this->findUser(name);
@@ -103,7 +112,7 @@ void App::readUsers(_TIFSTREAM& file) {
 bool App::pause(long n) {
 	if (n <= 0)
 		return false;
-	timePaused = n;
+	timePaused = n * 10;
 	return true;
 }
 
@@ -197,4 +206,8 @@ int App::findCompanySpot(Company& c, SharedCompany* comps) {
 
 Company* App::getCompanies() {
 	return companies.data();
+}
+
+User* App::getUsers() {
+	return users.data();
 }

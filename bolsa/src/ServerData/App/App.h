@@ -33,8 +33,11 @@ struct App {
 	void startThreads();
 	void stopThreads();
 
+	bool setCompanyPrice(const _TSTRING& cName, double new_price);
+
 	void readUsers(_TIFSTREAM& file);
 	Company* getCompanies();
+	User* getUsers();
 
 private:
 	int findCompanySpot(Company& c, SharedCompany* comps);
