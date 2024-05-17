@@ -35,8 +35,14 @@ DWORD WINAPI TimerThread::function(LPVOID lpParam) {
 				continue;
 			}
 
-			if (context.updateBoard(sharedMemory)) {
-				boardUpdate.set();
+			if (context.getState() == AppState::PAUSED) {
+				if (context.resume()) {
+					_TCOUT << _T("A aplicação já não está em pausa!") << _TENDL;
+				}
+			} else if (context.getState() == AppState::RUNNING) {
+				if (context.updateBoard(sharedMemory)) {
+					boardUpdate.set();
+				}
 			}
 		}
 		// Every 10.0 seconds
