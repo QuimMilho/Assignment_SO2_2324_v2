@@ -7,7 +7,12 @@ AppUI::AppUI(AppContext& app) : app(app) {}
 
 void AppUI::start() {
 	int exit = 0;
-	while (!exit) {
+	WindowsEvent exitEvent(APP_CLOSE_EVENT);
+	if (!exitEvent.create()) {
+		LOG_ERRO(_T("Erro ao criar evento de saída!"));
+		return;
+	}
+	while (!exit && app.isRunning()) {
 		switch (app.getState()) {
 		case AppState::LOADING:
 			exit = loadingUI();
@@ -20,6 +25,10 @@ void AppUI::start() {
 			break;
 		}
 	}
+	app.close();
+	exitEvent.set();
+	Sleep(100);
+	exitEvent.reset();
 	_TCOUT << _T("O programa fechou!") << _TENDL;
 }
 
@@ -42,7 +51,30 @@ int AppUI::commandUI() {
 	_TCOUT << "\n\n\t-->";
 	_TCOUT.flush();
 
+	// STACK OVERFLOW -> https://stackoverflow.com/questions/19955617/win32-read-from-stdin-with-timeout
+
+	DWORD fdwMode, fdwOldMode;
+
+	HANDLE stdinHandle = GetStdHandle(STD_INPUT_HANDLE);
+	GetConsoleMode(stdinHandle, &fdwOldMode);
+	// disable mouse and window input
+	fdwMode = fdwOldMode ^ ENABLE_MOUSE_INPUT ^ ENABLE_WINDOW_INPUT;
+	SetConsoleMode(stdinHandle, fdwMode);
+	// flush to remove existing events
+	FlushConsoleInputBuffer(stdinHandle);
+	
+	// END STACK OVERFLOW
+
+	while (WaitForSingleObject(stdinHandle, 100) == WAIT_TIMEOUT) {
+		if (!app.isRunning()) {
+			SetConsoleMode(stdinHandle, fdwOldMode);
+			return CMD_EXIT;
+		}
+	}
+
 	std::getline(_TCIN, cmd);
+
+	SetConsoleMode(stdinHandle, fdwOldMode);
 
 	int err = Command::executeCommand(app, cmd);
 
