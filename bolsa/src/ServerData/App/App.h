@@ -6,7 +6,11 @@
 #include "ServerData/Company/Company.h"
 #include "ServerData/User/User.h"
 
-#define APP_MUTEX _T("BolsaAppMutex")
+#define APP_ACCESS_MUTEX _T("BolsaAppMutex")
+
+#define MAX_COMPANY_UPDATE 50
+#define COMPANY_UPDATE_UNIT 1000
+#define COMPANY_UPDATE_CHANCE 10
 
 struct App {
 	App();
@@ -34,6 +38,7 @@ struct App {
 	void stopThreads();
 
 	[[nodiscard]] bool setCompanyPrice(const _TSTRING& cName, double new_price);
+	[[nodiscard]] bool setCompanyPrice(Company& c, double new_price);
 
 	void readUsers(_TIFSTREAM& file);
 	[[nodiscard]] Company* getCompanies();
@@ -48,7 +53,10 @@ private:
 	std::unique_ptr<WindowsThread> pipeThread;
 	std::unique_ptr<WindowsThread> timerThread;
 
+	Random randomGenerator;
+
 	bool updatedCompanies;
 	int nClientes;
 	long timePaused;
+	_TSTRING ultimaEmpresa;
 };

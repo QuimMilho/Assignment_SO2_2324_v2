@@ -8,7 +8,7 @@
 #define KEY_NAME _T("BolsaValoresSettings")
 #define KEY_VALUE _T("NCLIENTES")
 
-App::App() : timePaused(0), nClientes(0), updatedCompanies(false) {
+App::App() : timePaused(0), nClientes(0), updatedCompanies(false), randomGenerator(), ultimaEmpresa() {
 	Command::registerCommands();
 	std::unique_ptr<WindowsRegistryKey> key = std::unique_ptr<WindowsRegistryKey>(
 			WindowsRegistryKey::openKey(KEY_PATH, KEY_NAME, KEY_VALUE, 5, KEY_READ));
@@ -26,6 +26,16 @@ bool App::setCompanyPrice(const _TSTRING& cName, double new_price) {
 		return false;
 	Company& c = findCompany(cName);
 	c.setPrice(new_price);
+	ultimaEmpresa = c.getName();
+	updatedCompanies = true;
+	return true;
+}
+
+bool App::setCompanyPrice(Company& c, double new_price) {
+	if (new_price < 0.001)
+		return false;
+	c.setPrice(new_price);
+	ultimaEmpresa = c.getName();
 	updatedCompanies = true;
 	return true;
 }
@@ -58,6 +68,7 @@ bool App::addCompany(const _TSTRING& name, const int n_shares, const double shar
 			return false;
 		}
 		companies.push_back(Company(name, n_shares, share_price));
+		ultimaEmpresa = name;
 		updatedCompanies = true;
 		return true;
 	}
@@ -149,18 +160,30 @@ void App::stopThreads() {
 }
 
 bool App::update() {
-	return false;
+	bool upd = false;
+	for (Company& c : companies) {
+		if (randomGenerator.random(100) < COMPANY_UPDATE_CHANCE) {
+			int r = randomGenerator.random(-MAX_COMPANY_UPDATE, MAX_COMPANY_UPDATE);
+			double d = c.getSharedPrice() * (r / (double) COMPANY_UPDATE_UNIT + 1);
+			LOG_INFO(_T("A atualizar valor de empresa %s de %lf para %lf"), c.getName().c_str(), 
+					c.getSharedPrice(), d);
+			if (setCompanyPrice(c, d))
+				upd = true;
+		}
+	}
+	if (upd)
+		updatedCompanies = true;
+	return upd;
 }
 
 bool App::updateBoard(WindowsSharedMemory& memory) {
 	if (updatedCompanies) {
 		BoardData data;
+		_TSTRCPY_S(data.ultimaEmpresa, MAX_STRING - 1, ultimaEmpresa.c_str());
 		getBestCompanies(data.companies);
 		LOG_INFO("Melhores empresas encontradas!");
 		data.nCompanies = companies.size() > 10 ? 10 : companies.size();
-		LOG_INFO("São %d empresas!", data.nCompanies);
 		memory.write(&data);
-		LOG_INFO(_T("Informação escrita!"));
 		updatedCompanies = false;
 		return true;
 	}
@@ -169,23 +192,17 @@ bool App::updateBoard(WindowsSharedMemory& memory) {
 
 int App::getBestCompanies(SharedCompany * comps) {
 	memset(comps, 0, sizeof(SharedCompany) * 10);
-	LOG_DEBUG(_T("A ver as melhores empresas"));
 	for (int i = 0; i < companies.size(); i++) {
 		Company& c = companies.at(i);
-		LOG_DEBUG(_T("Empresa %d"), i);
 		int p = findCompanySpot(c, comps);
 		if (p < 0) {
-			LOG_DEBUG(_T("A posição é superior às 10 pretendidas."));
 			continue;
 		}
 		if (comps[p].share_price == 0) {
-			LOG_DEBUG(_T("A posição %d está vazia!"), p);
 			c >> comps[p];
 		} else {
-			LOG_DEBUG(_T("A posição %d é a melhor!"), p);
 			for (int h = 9; h > p; h--) 
 				memcpy(&comps[h], &comps[h - 1], sizeof(SharedCompany));
-			LOG_DEBUG(_T("Tudo foi movido para o respetivo sítio!"), p);
 			c >> comps[p];
 		}
 	}

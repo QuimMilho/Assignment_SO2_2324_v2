@@ -57,7 +57,7 @@ bool AppRunningState::close() {
 }
 
 bool AppRunningState::update() {
-	return false;
+	return data->update();
 }
 
 bool AppRunningState::updateBoard(WindowsSharedMemory& memory) {
