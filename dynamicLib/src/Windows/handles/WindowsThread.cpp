@@ -2,8 +2,16 @@
 
 #include "WindowsThread.h"
 
-WindowsThread::WindowsThread(void* threadData, LPTHREAD_START_ROUTINE function) : WindowsHandle(
-		CreateThread(NULL, 0, function, this, 0, &threadId)), isPaused(false), isRunning(true), 
+DWORD WINAPI threadFunction(LPVOID lpParam) {
+	LOG_INFO(_T("Thread iniciada!"));
+	WindowsThread* t = (WindowsThread *) lpParam;
+	int r = t->function(lpParam);
+	LOG_INFO(_T("Thread terminada! Saída: %d"), r);
+	return r;
+}
+
+WindowsThread::WindowsThread(void* threadData) : WindowsHandle(
+		CreateThread(NULL, 0, threadFunction, this, 0, &threadId)), isPaused(false), isRunning(true),
 		data(threadData) {}
 
 WindowsThread::~WindowsThread() {}

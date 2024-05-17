@@ -5,6 +5,8 @@
 struct SO2_API WindowsThread : public WindowsHandle {
 	virtual ~WindowsThread();
 
+	virtual DWORD WINAPI function(LPVOID data) = 0;
+
 	[[nodiscard]] bool running() const;
 	[[nodiscard]] bool paused() const;
 
@@ -16,7 +18,7 @@ struct SO2_API WindowsThread : public WindowsHandle {
 	void stop();
 
 protected:
-	WindowsThread(void * threadData, LPTHREAD_START_ROUTINE function);
+	WindowsThread(void * threadData);
 
 private:
 	DWORD threadId;
