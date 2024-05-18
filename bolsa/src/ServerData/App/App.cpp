@@ -8,7 +8,7 @@
 #define KEY_NAME _T("BolsaValoresSettings")
 #define KEY_VALUE _T("NCLIENTES")
 
-App::App() : timePaused(0), nClientes(0), updatedCompanies(false), randomGenerator(), ultimaEmpresa() {
+App::App() : timePaused(0), nClientes(0), updatedCompanies(false), randomGenerator(), ultimaEmpresa(_T("")) {
 	Command::registerCommands();
 	std::unique_ptr<WindowsRegistryKey> key = std::unique_ptr<WindowsRegistryKey>(
 			WindowsRegistryKey::openKey(KEY_PATH, KEY_NAME, KEY_VALUE, 5, KEY_READ));
@@ -19,6 +19,7 @@ App::App() : timePaused(0), nClientes(0), updatedCompanies(false), randomGenerat
 	int n = key->readInt();
 	LOG_DEBUG("Obtido valor %d da chave NCLIENTES!", n);
 	nClientes = n;
+	memset(&lastTransaction, 0, sizeof(SharedCompany));
 }
 
 bool App::setCompanyPrice(const _TSTRING& cName, double new_price) {
@@ -179,7 +180,8 @@ bool App::update() {
 bool App::updateBoard(WindowsSharedMemory& memory) {
 	if (updatedCompanies) {
 		BoardData data;
-		_TSTRCPY_S(data.ultimaEmpresa, MAX_STRING - 1, ultimaEmpresa.c_str());
+		_TSTRCPY_S(data.ultimaEmpresa, MAX_STRING, ultimaEmpresa.c_str());
+		data.last = lastTransaction;
 		getBestCompanies(data.companies);
 		LOG_INFO("Melhores empresas encontradas!");
 		data.nCompanies = companies.size() > 10 ? 10 : companies.size();
@@ -206,8 +208,6 @@ int App::getBestCompanies(SharedCompany * comps) {
 			c >> comps[p];
 		}
 	}
-	for (int i = 0; i < 10; i++)
-		_TCOUT << comps[i].nome << _TENDL;
 	return 0;
 }
 
@@ -227,4 +227,11 @@ Company* App::getCompanies() {
 
 User* App::getUsers() {
 	return users.data();
+}
+
+void App::setLastTransaction(SharedCompany& sc, const TCHAR* nome, const double share_price, const int n_acoes) {
+	_TSTRCPY_S(sc.nome, MAX_STRING, nome);
+	sc.share_price = share_price;
+	sc.total_acoes = n_acoes;
+	sc.total_value = n_acoes * share_price;
 }

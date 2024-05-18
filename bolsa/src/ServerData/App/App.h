@@ -8,7 +8,7 @@
 
 #define APP_ACCESS_MUTEX _T("BolsaAppMutex")
 
-#define MAX_COMPANY_UPDATE 50
+#define MAX_COMPANY_UPDATE 20
 #define COMPANY_UPDATE_UNIT 1000
 #define COMPANY_UPDATE_CHANCE 10
 
@@ -44,6 +44,8 @@ struct App {
 	[[nodiscard]] Company* getCompanies();
 	[[nodiscard]] User* getUsers();
 
+	void setLastTransaction(SharedCompany& sc, const TCHAR* str, const double share_price, const int n_acoes);
+
 private:
 	[[nodiscard]] int findCompanySpot(Company& c, SharedCompany* comps);
 
@@ -59,4 +61,5 @@ private:
 	int nClientes;
 	long timePaused;
 	_TSTRING ultimaEmpresa;
+	SharedCompany lastTransaction;
 };
