@@ -7,18 +7,20 @@
 int _tmain(int argc, TCHAR** argv) {
 	DEFINE_UNICODE;
 
-	int n, k;
+	int n = 10, k;
 
-	if (argc != 2) {
-		_TCOUT << _T("") << _TENDL;
+	if (argc > 2) {
+		_TCOUT << _T("Foram inseridos demasiados argumentos!") << _TENDL;
 		return -1;
 	}
 
-	try {
-		n = std::stoi(argv[1]);
-	} catch (std::exception& e) {
-		_TCOUT << _T("") << _TENDL;
-		return -1;
+	if (argc == 2) {
+		try {
+			n = std::stoi(argv[1]);
+		} catch (std::exception& e) {
+			_TCOUT << _T("") << _TENDL;
+			return -1;
+		}
 	}
 
 	if (n <= 0 || n > 10) {
@@ -56,7 +58,7 @@ int _tmain(int argc, TCHAR** argv) {
 	boardMemory.read(&data);
 	console.clear();
 	console.print(data, n);
-	console.setCursor(0, 25);
+	console.setCursor(0, 26);
 
 	std::unique_ptr<PrintThread> printThread(PrintThread::createThread());
 
