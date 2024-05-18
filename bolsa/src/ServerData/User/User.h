@@ -14,5 +14,6 @@ struct User {
 private:
 	_TSTRING username, password;
 	double balance;
+	bool loggedIn;
 	std::vector<Wallet> wallet;
 };
