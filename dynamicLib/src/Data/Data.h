@@ -13,10 +13,12 @@
 struct SharedCompany {
 	TCHAR nome[MAX_STRING];
 	double share_price, total_value;
+	int total_acoes;
 };
 
 struct BoardData {
 	TCHAR ultimaEmpresa[MAX_STRING];
+	SharedCompany last;
 	SharedCompany companies[10];
 	int nCompanies;
 };
