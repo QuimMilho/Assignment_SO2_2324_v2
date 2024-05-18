@@ -14,6 +14,7 @@ struct SO2_API WindowsThread : public WindowsHandle {
 	[[nodiscard]] int resume();
 
 	[[nodiscard]] void* getData();
+	void terminate();
 
 	void stop();
 

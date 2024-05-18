@@ -7,6 +7,7 @@ DWORD WINAPI threadFunction(LPVOID lpParam) {
 	WindowsThread* t = (WindowsThread *) lpParam;
 	int r = t->function(lpParam);
 	LOG_INFO(_T("Thread terminada! Saída: %d"), r);
+	t->stop();
 	return r;
 }
 
@@ -44,4 +45,9 @@ int WindowsThread::resume() {
 
 void* WindowsThread::getData() {
 	return data;
+}
+
+void WindowsThread::terminate() {
+	TerminateThread(handle, 1);
+	LOG_INFO(_T("Thread %d terminated!"), threadId);
 }
