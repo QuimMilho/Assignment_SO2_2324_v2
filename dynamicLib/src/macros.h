@@ -36,6 +36,7 @@
 #define _TLPSTR					LPWSTR
 #define _TOSTREAM				std::wostream
 #define _TCHAR_INFO_CHAR(i)		info[i].Char.UnicodeChar
+#define _TGETCHAR				std::getwchar
 #else
 #define _TCOUT					std::cout
 #define _TCIN					std::cin
@@ -54,6 +55,7 @@
 #define _TLPSTR					LPSTR
 #define _TOSTREAM				std::ostream
 #define _TCHAR_INFO_CHAR(i)		info[i].Char.AsciiChar
+#define _TGETCHAR				std::getchar
 #endif
 
 #ifdef SO2_DEBUG
