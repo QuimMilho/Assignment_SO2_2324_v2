@@ -12,6 +12,10 @@ struct Company {
 
 	void setPrice(const double p);
 
+	[[nodiscard]] bool seel();
+	[[nodiscard]] bool buy();
+	[[nodiscard]] int check();
+
 	friend Company& operator >> (Company& c, SharedCompany& sc);
 	friend _TOSTREAM& operator << (_TOSTREAM& o, Company& c);
 

@@ -23,6 +23,7 @@ Company& operator>>(Company& c, SharedCompany& sc) {
 	_TSTRCPY_S(sc.nome, MAX_STRING, c.name.c_str());
 	sc.share_price = c.share_price;
 	sc.total_value = c.total_value;
+	sc.total_acoes = c.total_shares;
 	return c;
 }
 
