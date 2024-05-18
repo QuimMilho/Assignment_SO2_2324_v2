@@ -7,7 +7,7 @@ AppUI::AppUI(AppContext& app) : app(app), appMutex(WindowsMutex(APP_ACCESS_MUTEX
 
 void AppUI::start() {
 	int exit = 0;
-	WindowsEvent exitEvent(APP_CLOSE_EVENT);
+	WindowsEvent exitEvent(APP_CLOSE_EVENT, true);
 	if (!exitEvent.create()) {
 		LOG_ERRO(_T("Erro ao criar evento de saída!"));
 		return;
