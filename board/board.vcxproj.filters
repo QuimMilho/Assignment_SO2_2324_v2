@@ -24,9 +24,15 @@
     <ClCompile Include="src\console\console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\threads\PrintThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\console\console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\threads\PrintThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

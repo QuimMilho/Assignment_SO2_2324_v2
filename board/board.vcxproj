@@ -100,6 +100,7 @@
     <ClCompile Include="src\pch\so2pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\threads\PrintThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dynamicLib\dynamicLib.vcxproj">
@@ -108,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\console\console.h" />
+    <ClInclude Include="src\threads\PrintThread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
