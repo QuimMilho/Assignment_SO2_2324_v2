@@ -10,6 +10,8 @@
 #define BOARD_UPDATE_EVENT _T("BoardUpdateEvent")
 #define APP_CLOSE_EVENT _T("AppCloseEvent")
 
+#define CLIENTE_NAMED_PIPE _T("\\\\.\\pipe\\ClienteNamedPipe")
+
 struct SharedCompany {
 	TCHAR nome[MAX_STRING];
 	double share_price, total_value;

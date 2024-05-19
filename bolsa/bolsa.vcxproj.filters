@@ -63,6 +63,9 @@
     <ClCompile Include="src\threads\TimerThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\threads\SinglePipeThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ServerData\ServerData.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\threads\TimerThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\threads\SinglePipeThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

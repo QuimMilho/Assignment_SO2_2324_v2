@@ -1,15 +1,15 @@
 #include "pch/so2pch.h"
 
 #include "PipeThread.h"
+#include "SinglePipeThread.h"
 
 DWORD WINAPI PipeThread::function(LPVOID lpParam) {
 	LOG_DEBUG("PipeThread criada!");
 	PipeThread& data = *(PipeThread*) lpParam;
 	App& context = *(App*)data.getData();
 
-	WindowsMutex mutex(APP_ACCESS_MUTEX);
-
 	while (data.running()) {
+
 	}
 
 	return 0;

@@ -111,6 +111,7 @@
     <ClCompile Include="src\ServerData\User\User.cpp" />
     <ClCompile Include="src\ServerData\Wallet\Wallet.cpp" />
     <ClCompile Include="src\threads\PipeThread.cpp" />
+    <ClCompile Include="src\threads\SinglePipeThread.cpp" />
     <ClCompile Include="src\threads\TimerThread.cpp" />
     <ClCompile Include="src\ui\AppUI.cpp" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="src\ServerData\User\User.h" />
     <ClInclude Include="src\ServerData\Wallet\Wallet.h" />
     <ClInclude Include="src\threads\PipeThread.h" />
+    <ClInclude Include="src\threads\SinglePipeThread.h" />
     <ClInclude Include="src\threads\Threads.h" />
     <ClInclude Include="src\threads\TimerThread.h" />
     <ClInclude Include="src\ui\AppUI.h" />
